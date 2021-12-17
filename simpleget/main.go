@@ -7,8 +7,14 @@ import (
 )
 
 func main() {
-	resp, _ := http.Get("http://localhost:1888")	
+	resp, err := http.Get("http://google.com")
+	if err != nil {
+		panic(err)
+	}
 	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
 	log.Println(string(body))
 }
